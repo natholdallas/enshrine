@@ -1,0 +1,62 @@
+debug: false
+
+upload:
+  images: ./upload/images
+
+server:
+  port: 8080
+
+logging:
+  file:
+    path: ./logs
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: natholdallas@qq.com
+    password: nxgzwtmgqrrsbiif
+  devtools:
+    restart:
+      additional-exclude:
+        - file:./dist
+  jpa:
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+  servlet:
+    multipart:
+      max-file-size: 20MB
+  mvc:
+    servlet:
+      load-on-startup: 0
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/enshrine?createDatabaseIfNotExist=true&serverTimezone=Asia/Shanghai&connectionCollation=utf8_bin
+    username: root
+    password: 1234
+  web:
+    resources:
+      static-locations:
+        - classpath:/dist
+        - file:${upload.images}
+
+sa-token:
+  # token 名称 (同时也是cookie名称)
+  token-name: token
+  # token 有效期, 单位s 默认30天, -1代表永远不过期
+  timeout: -1
+  # token 临时有效期 (指定时间内无操作就视为token过期) 单位s
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-concurrent: false
+  # 在多人登录同一账号时, 是否共用一个 token (为true时所有登录共用同一个token, 为false)
+  is-share: true
+  # token 风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true

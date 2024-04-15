@@ -1,0 +1,9 @@
+{
+    "properties": [
+        {
+            "name": "upload.images",
+            "type": "java.lang.String",
+            "description": "Description for upload.image."
+        }
+    ]
+}
